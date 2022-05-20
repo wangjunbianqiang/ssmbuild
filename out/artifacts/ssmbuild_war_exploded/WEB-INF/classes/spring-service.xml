@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+<!--1.扫描service下的包,也就是service相关的bean-->
+    <context:component-scan base-package="com.wj.service"></context:component-scan>
+
+<!--2.将我们所有的业务类注入到spring，可以通过配置文件实现，也可以使用注解实现
+      也就是将BookServiceImpl注入到IOC容器中-->
+    <bean id="BookServiceImpl" class="com.wj.service.BookServiceImpl">
+        <property name="bookMapper" ref="bookMapper"></property>
+    </bean>
+<!--    3.声明式事务配置-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+<!--输入数据库连接池-->
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+</beans>

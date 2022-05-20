@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--引入properties文件，连接数据库-->
+<!--    <properties resource="database.properties"></properties> 交给spring去做了-->
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+    <!--设置类型别名, alias设置type的别名，不设置alias默认是类名-->
+    <typeAliases>
+        <!--        <typeAlias type="" alias="User"></typeAlias>-->
+        <!--以包为单位，设置默认的类型别名即类名，且类名不区分大小写-->
+        <package name="com.wj.pojo"></package>
+    </typeAliases>
+
+    <!--引入映射文件-->
+    <mappers>
+        <!--        <mapper resource="mappers/UserMapper.xml"/>-->
+        <!--
+    以包为单位引入映射文件
+    要求：
+        1.mapper接口所在的包要和xml映射文件所在的包一致
+        2.mapper接口要和映射文件的文件名一致
+        -->
+        <package name="com.wj.dao.BookMapper"/>
+    </mappers>
+</configuration>

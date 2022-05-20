@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--a>mapper接口的全类名和映射文件的命名空间（namespace）保持一致
+    b>mapper接口中方法的方法名和映射文件中编写SQL的标签的id属性保持一致-->
+<mapper namespace="com.wj.dao.BookMapper">
+    <!--int addBook(Books books);    -->
+    <insert id="addBook" parameterType="Books">
+        insert into books (bookName,bookCounts,detail)
+        values (#{bookName},#{bookCounts},#{detail});
+    </insert>
+    <!--int deleteBook(@Param("bookId") Integer bookID);-->
+    <delete id="deleteBook" parameterType="int">
+        delete
+        from books
+        where bookID = #{bookID};
+    </delete>
+    <!-- int updateBook(Books books);   -->
+    <update id="updateBook" parameterType="Books">
+        update books
+        set bookName = #{bookName},bookCounts = #{bookCounts},detail = #{detail}
+        where bookID = #{bookID};
+    </update>
+    <!--  Books queryBook(Integer bookID);  -->
+    <select id="queryBook" resultType="Books">
+        select *
+        from books where bookID = #{bookID};
+    </select>
+    <!-- List<Books> queryAllBook();   -->
+    <select id="queryAllBook" resultType="Books">
+        select *
+        from books;
+    </select>
+    <!--    Books queryBookByName(@Param("bookName") String bookName);-->
+    <select id="queryBookByName" resultType="Books">
+        select * from books where bookName = #{bookName}
+    </select>
+</mapper>
